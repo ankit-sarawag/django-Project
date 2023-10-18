@@ -1,0 +1,273 @@
+{% extends "base.html" %}
+{% load static %}
+{% block head %}
+
+{% endblock head %}
+
+{% block title %}
+Register
+{% endblock title %}
+
+{% block loginActive %}active{% endblock loginActive %}
+
+{% load static %}
+<link rel="stylesheet" href={% static "css/registerStudent.css" %}>
+footer{
+    margin-top:-400px;
+}
+{% block styleCss %}
+
+{% endblock styleCss %}
+
+{% block body %}
+<!-- <h1 class="fw-bold mt-4 text-uppercase text-center text-decoration-underline " id="login">ARSD College</h1>
+<div class="container">
+    <form class="form-horizontal" role="form">
+        <h2>Registration</h2>
+        <div class="form-group">
+            <label for="firstName" class="col-sm-3 control-label">First Name</label>
+            <div class="col-sm-9">
+                <input type="text" id="firstName" placeholder="First Name" class="form-control" autofocus>
+            </div>
+        </div>
+        <div class="form-group">
+            <label for="lastName" class="col-sm-3 control-label">Last Name</label>
+            <div class="col-sm-9">
+                <input type="text" id="lastName" placeholder="Last Name" class="form-control" autofocus>
+            </div>
+        </div>
+        <div class="form-group">
+            <label for="email" class="col-sm-3 control-label">Email* </label>
+            <div class="col-sm-9">
+                <input type="email" id="email" placeholder="Email" class="form-control" name= "email">
+            </div>
+        </div>
+        <div class="form-group">
+            <label for="password" class="col-sm-3 control-label">Password*</label>
+            <div class="col-sm-9">
+                <input type="password" id="password" placeholder="Password" class="form-control">
+            </div>
+        </div>
+        <div class="form-group">
+            <label for="password" class="col-sm-3 control-label">Confirm Password*</label>
+            <div class="col-sm-9">
+                <input type="password" id="password" placeholder="Password" class="form-control">
+            </div>
+        </div>
+        <div class="form-group">
+            <label for="birthDate" class="col-sm-3 control-label">Date of Birth*</label>
+            <div class="col-sm-9">
+                <input type="date" id="birthDate" class="form-control">
+            </div>
+        </div>
+        <div class="form-group">
+            <label for="phoneNumber" class="col-sm-3 control-label">Phone number </label>
+            <div class="col-sm-9">
+                <input type="phoneNumber" id="phoneNumber" placeholder="Phone number" class="form-control">
+                <span class="help-block">Your phone number won't be disclosed anywhere </span>
+            </div>
+        </div>
+        <div class="form-group">
+                <label for="Height" class="col-sm-3 control-label">Height* </label>
+            <div class="col-sm-9">
+                <input type="number" id="height" placeholder="Please write your height in centimetres" class="form-control">
+            </div>
+        </div>
+         <div class="form-group">
+                <label for="weight" class="col-sm-3 control-label">Weight* </label>
+            <div class="col-sm-9">
+                <input type="number" id="weight" placeholder="Please write your weight in kilograms" class="form-control">
+            </div>
+        </div>
+        <div class="form-group">
+            <label class="control-label col-sm-3">Gender</label>
+            <div class="col-sm-6">
+                <div class="row">
+                    <div class="col-sm-4">
+                        <label class="radio-inline">
+                            <input type="radio" id="femaleRadio" value="Female">Female
+                        </label>
+                    </div>
+                    <div class="col-sm-4">
+                        <label class="radio-inline">
+                            <input type="radio" id="maleRadio" value="Male">Male
+                        </label>
+                    </div>
+                </div>
+            </div>
+        </div> <!-- /.form-group -->
+        <!-- <div class="form-group">
+            <div class="col-sm-9 col-sm-offset-3">
+                <span class="help-block">*Required fields</span>
+            </div>
+        </div>
+        <button type="submit" class="btn btn-primary btn-block">Register</button>
+    </form> 
+</div> -->
+
+{% if messages %}
+{% for message in messages %}
+<div class="alert alert-{{message.tags}} alert-dismissible fade show mb-1" role="alert">
+    {% if success == True%}
+        <i class="fa fa-check-square me-3" style="font-size:28px;color:rgb(108, 246, 108);
+        position: relative;left: 8px;top: 4px;"></i>
+    {% else %} 
+        <i class="fa fa-close me-3" style="font-size:28px;color:rgb(239, 9, 9);
+        position: relative;left: 8px;top: 4px;"></i>
+    {% endif %}
+    <strong>{{message}}</strong><br>
+    <br>
+    <button type="button" class="btn-close" data-bs-dismiss="alert" aria-label="Close"></button>
+</div>
+{% endfor %}
+{% endif %}
+
+<div class="container px-5 " style="width: 800px;margin-top: 30px;margin-bottom: -500px;">
+    <h1 class="text-center my-4">This is the Student Registration Form</h1>
+    <form method="post" action="/register" class="px-5 py-4 border border-dark-subtle  border-2 rounded " style="background-color: rgba(217, 210, 210, 0.8);">
+    {% csrf_token %}
+          
+        <div class="mb-4 ">
+            <label for="firstname" class="form-label">First Name</label>
+            <input type="text"  maxlength="30" class="form-control bg-body-tertiary search-item" id="firstname" name="firstname" aria-describedby="nameHelp" placeholder="Enter your First name" required>
+        </div>
+        <div class="mb-4 ">
+            <label for="name" class="form-label">Last Name</label>
+            <input type="text"  maxlength="30" class="form-control bg-body-tertiary search-item" id="lname" name="lname" aria-describedby="nameHelp" placeholder="Enter your last name" required>
+        </div>
+        <div class="mb-4 ">
+            <label for="phone" class="form-label">Phone Number</label>
+            <input type="number"  maxlength="10" class="form-control bg-body-tertiary search-item" id="phone" name="phone" aria-describedby="phoneHelp" placeholder="Enter your phone number" required>
+            <div id="phoneHelp" class="form-textv mt-2">We'll never share your phone number with anyone else.</div>
+        
+        </div>
+        <div class="mb-4">
+            <label for="email" class="form-label">Primary Email address</label>
+            <input type="email"  maxlength="40" class="form-control bg-body-tertiary search-item" id="pemail" name="pemail" aria-describedby="emailHelp" required placeholder="enter your primary email address">
+            <div id="emailHelp" class="form-textv mt-2">We'll never share your email with anyone else.</div>
+        </div>
+        <div class="mb-4">
+          <label for="email" class="form-label">Alternate Email address</label>
+          <input type="email"  maxlength="40" class="form-control bg-body-tertiary search-item" id="aemail" name="aemail" aria-describedby="emailHelp" required placeholder="enter your alternate email address">
+          <div id="emailHelp" class="form-textv mt-2">We'll never share your email with anyone else.</div>
+        </div>
+        <div class="mb-4">
+            <label for="rollno" class="form-label">Roll Number</label>
+            <input type="number"  minlength="5" class="form-control bg-body-tertiary search-item" id="rollno" name="rollno"  required placeholder="enter your roll number">
+            
+        </div>
+        <div class="mb-4">
+          <label for="password" class="form-label">Password</label>
+          <input type="password"  class="form-control bg-body-tertiary search-item" id="password" name="password" placeholder="enter your password" required>
+        </div>
+        <div class="mb-4">
+            <label for="cpassword" class="form-label">Confirm Password</label>
+            <input type="password"  class="form-control bg-body-tertiary search-item" id="cpassword" name="cpassword" placeholder="enter your password" required>
+        </div>
+        <div class="form-group mb-4">
+            <label for="birthDate" class="col-sm-3 control-label">Date of Birth*</label>
+            <div class="col-sm-9">
+                <input type="date" id="birthDate" class="form-control" name="birthDate">
+            </div>
+        </div>
+        <div class="form-group mb-4">
+            <label class="control-label col-sm-3" style="font-size: 20px;">Gender</label>
+            <div class="col-sm-6">
+                <div class="row">
+                    <div class="col-sm-4">
+                        <label class="radio-inline">
+                            <input type="radio" id="female" value="F" name="gender" class="mx-2" >Female
+                        </label>
+                    </div>
+                    <div class="col-sm-4">
+                        <label class="radio-inline">
+                            <input type="radio" id="male" value="M" name="gender" class="mx-2" >Male
+                        </label>
+                    </div>
+                </div>
+            </div>
+        </div> 
+        <div class="mb-4">
+            <label for="course" class="form-label" style="font-size: 20px;">Stream</label>
+            <select   class="form-control bg-body-tertiary search-item" id="stream" name="stream"  required>
+                <option value="">-------------------------------select your stream----------------------------------</option>
+                <option value="Sci">Science</option>
+                <option value="Com">Commerce</option>
+                <option value="Arts">Arts</option>
+            </select>
+        </div>       
+        <div class="mb-4">
+            <label for="course" class="form-label" style="font-size: 20px;">Course</label>
+            <select   class="form-control bg-body-tertiary search-item" id="course" name="course"  required>
+                <option value="">-------------------------------select your course-----------------------------------</option>
+                <option value="B.Sc(Hons.) Computer Science">Computer Science (hons)</option>
+                <option value="CS(p)">Computer Science (Programme)</option>
+                <option value="Bcom(h)">Bcom (hons)</option>
+                <option value="Bcom(p)">Bcom (Programme)</option>
+                <option value="Physics(h)">Physics (hons)</option>
+                <option value="Chemistry(h)">Chemistry (hons)</option>
+            </select>
+        </div>
+        <div class="mb-4">
+            <label for="course" class="form-label" style="font-size: 20px;">Semester</label>
+            <select   class="form-control bg-body-tertiary search-item" id="semester" name="semester"  required>
+                <option value="">-------------------------------select your semester----------------------------------</option>
+                <option value="1">1</option>
+                <option value="2">2</option>
+                <option value="3">3</option>
+                <option value="4">4</option>
+                <option value="5">5</option>
+                <option value="6">6</option>
+            </select>
+        </div>
+        <div class="mb-4">
+            <label   for="course" class="form-label" style="font-size: 20px;">Section</label>
+            <select   class="form-control bg-body-tertiary search-item" id="section" name="section"  required>
+                <option value="">-------------------------------select your section----------------------------------</option>
+                <option value="A">A</option>
+                <option value="B">B</option>
+                <option value="C">C</option>
+                <option value="D">D</option>
+                
+            </select>
+        </div>
+        <div class="mb-4 form-check">
+          <input type="checkbox"  class="form-check-input border border-2 me-2 search-item" style="width: 25px ; height: 20px;" id="exampleCheck1">
+          <label class="form-check-label" for="exampleCheck1">Check me out</label>
+        </div>
+        <div class="mb-4 text-center">
+            <label for="key" class="form-label"><strong style="font-size: 25px;">Key</strong></label>
+            <input type="text"  class="form-control bg-body-tertiary search-item" id="key" name="key" placeholder="enter the reigstration key" maxlength="4" required>
+        </div>
+        <div class="container text-center mt-4">
+            <div class="row align-items-center">
+                <div class="col-6" style="width: 300px; padding-left: 0px; padding-right: 0px;">
+                    <button type="submit" class="btn btn-primary  mx-3" style="width: 276px;">Submit</button>
+                </div>
+                <div class="col-6" style="width: 300px; padding-left: 0px; padding-right: 0px;" >
+                  <button type="reset" class="btn btn-outline-warning mx-3" style="width: 276px;">Reset</button>
+                </div>
+            </div>
+        </div>
+        
+    </form>
+
+
+</div>
+<script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
+<script>
+    $("#stream").change(function () {
+        const stream = $("#stream").val();
+        const section = $("#section");
+        if (stream == 'Sci') {
+            section.val("A");
+            section.prop("disabled",true);
+        } else {
+            section.prop("disabled",false);
+        }
+    })
+</script>
+
+<script src={% static "js/register.js" %} integrity="sha384-C6RzsynM9kWDrMNeT87bh95OGNyZPhcTNXj1NW7RuBCsyN/o0jlpcV8Qyq46cDfL" crossorigin="anonymous"></script>
+
+{% endblock body %}

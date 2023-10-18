@@ -1,0 +1,127 @@
+{% extends "base.html" %}
+{% load static %}
+
+{% block head %}
+<link rel="stylesheet" href="https://www.w3schools.com/w3css/4/w3.css">
+{% comment %} <link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Karma"> {% endcomment %}
+<link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-T3c6CoIi6uLrA9TneNEoa7RxnatzjcDSCmG1MXxSR1GAsXEV/Dwwykc2MPK8M2HN" crossorigin="anonymous">
+    
+{% endblock head %}
+
+{% block styleCss %}
+.w3-bar-block .w3-bar-item {padding:20px}
+{% endblock styleCss %}
+
+{% block title %}
+Update Details
+{% endblock title %}
+{% block body %}
+{% if messages %}
+{% for message in messages %}
+<div class="alert alert-{{message.tags}} alert-dismissible fade show mb-1" role="alert">
+    {% if success == True%}
+        <i class="fa fa-check-square me-3" style="font-size:28px;color:rgb(108, 246, 108);
+        position: relative;left: 8px;top: 4px;"></i>
+    {% else %} 
+        <i class="fa fa-close me-3" style="font-size:28px;color:rgb(239, 9, 9);
+        position: relative;left: 8px;top: 4px;"></i>
+    {% endif %}
+    <strong>{{message}}</strong><br>
+    <br>
+    <button type="button" class="btn-close" data-bs-dismiss="alert" aria-label="Close"></button>
+</div>
+{% endfor %}
+{% endif %}
+
+<nav class="w3-sidebar  w3-bar-block w3-card w3-top w3-xlarge w3-animate-left" style="display:none;z-index:2;width:40%;min-width:300px;margin-top: 190px;" id="mySidebar">
+    <div class="text-center">
+    <a  href="javascript:void(0)" style="padding:20px 200px" onclick="w3_close()"class="w3-bar-item w3-button">Close Menu</a></div>
+    <div class="text-center"><a style="padding:20px 200px" href="/StudentDetails" onclick="w3_close()" class="w3-bar-item w3-button">Basic Details</a></div>
+    <div class="text-center"><a style="padding:20px 200px" href="/updateDetails" onclick="w3_close()" class="w3-bar-item w3-button">Update Details</a></div>
+    <div class="text-center"><a style="padding:20px 200px" href="#about" onclick="w3_close()" class="w3-bar-item w3-button">View Timetable</a></div>
+    <div class="text-center"><a style="padding:20px 200px" href="" onclick="w3_close()" class="w3-bar-item w3-button">Fees</a></div>
+    <div class="text-center"><a style="padding:20px 200px" href="{% url 'logoutStudent' %}"  class="w3-bar-item w3-button">Log Out</a></div>
+    
+    
+</nav>
+
+<div class="w3-top" style="position: relative;top: 10px;">
+    <div class="w3-white w3-xlarge" style="max-width:1200px;margin:auto; ">
+      <div class="w3-button w3-padding-16 w3-left" onclick="w3_open()">&#9776;</div>
+      <div><h1 class="text-center" >You can update the details for the student named {{studentDetails.username}}</h1></div> 
+    </div>
+  </div>
+  
+<div class="container px-5 " style="width: 800px;margin-top: 70px;margin-bottom: -500px;">
+    
+    <form method="post" action="/updateDetails" class="px-5 py-4 border border-dark-subtle  border-2 rounded " style="background-color: rgba(217, 210, 210, 0.8);">
+    {% csrf_token %}
+        <div class="mb-4 ">
+            <label for="firstname" class="form-label">First Name</label>
+            <input type="text"  maxlength="30" class="form-control bg-body-tertiary search-item" id="firstname" name="firstname" aria-describedby="nameHelp" placeholder="Enter your First name" required>
+        </div>
+        <div class="mb-4 ">
+            <label for="name" class="form-label">Last Name</label>
+            <input type="text"  maxlength="30" class="form-control bg-body-tertiary search-item" id="lname" name="lname" aria-describedby="nameHelp" placeholder="Enter your last name" required>
+        </div>
+        <div class="mb-4 ">
+            <label for="phone" class="form-label">Phone Number</label>
+            <input type="number"  maxlength="10" class="form-control bg-body-tertiary search-item" id="phone" name="phone" aria-describedby="phoneHelp" placeholder="Enter your phone number" required>
+            <div id="phoneHelp" class="form-textv mt-2">We'll never share your phone number with anyone else.</div>
+        
+        </div>
+        <div class="mb-4">
+            <label for="email" class="form-label">Primary Email address</label>
+            <input type="email"  maxlength="40" class="form-control bg-body-tertiary search-item" id="pemail" name="pemail" 
+            placeholder="you can't update your Primary Email Address"> 
+        </div>
+        <div class="mb-4">
+          <label for="email" class="form-label">Alternate Email address</label>
+          <input type="email"  maxlength="40" class="form-control bg-body-tertiary search-item" id="aemail" name="aemail" aria-describedby="emailHelp" required placeholder="enter your alternate email address">
+          <div id="emailHelp" class="form-textv mt-2">We'll never share your email with anyone else.</div>
+        </div>
+        <div class="mb-4">
+            <label for="rollno" class="form-label">Roll Number</label>
+            <input type="number"  minlength="5" class="form-control bg-body-tertiary search-item" id="rollno" name="rollno"  required placeholder="you can't update your roll number">
+            
+        </div>
+        <div class="mb-4">
+          <label for="password" class="form-label">Password</label>
+          <input type="password"  class="form-control bg-body-tertiary search-item" id="password" name="password" placeholder="enter your password" required>
+        </div>
+        <div class="mb-4">
+            <label for="cpassword" class="form-label">Confirm Password</label>
+            <input type="password"  class="form-control bg-body-tertiary search-item" id="cpassword" name="cpassword" placeholder="enter your password" required>
+        </div>
+        
+        <div class="mb-4 form-check">
+          <input type="checkbox"  class="form-check-input border border-2 me-2 search-item" style="width: 25px ; height: 20px;" id="exampleCheck1">
+          <label class="form-check-label" for="exampleCheck1">Check me out</label>
+        </div>
+        
+        <div class="container text-center mt-4">
+            <div class="row align-items-center">
+                <div class="col-6" style="width: 300px; padding-left: 0px; padding-right: 0px;">
+                    <button type="submit" class="btn btn-primary  mx-3" style="width: 276px;">Submit</button>
+                </div>
+                <div class="col-6" style="width: 300px; padding-left: 0px; padding-right: 0px;" >
+                  <button type="reset" class="btn btn-outline-warning mx-3" style="width: 276px;">Reset</button>
+                </div>
+            </div>
+        </div>
+        
+    </form>
+
+
+</div>
+
+  <script>
+    // Script to open and close sidebar
+    function w3_open() {
+      document.getElementById("mySidebar").style.display = "block";
+    }
+    function w3_close() {
+      document.getElementById("mySidebar").style.display = "none";
+    }
+    </script>
+{% endblock body %}

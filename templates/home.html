@@ -1,0 +1,280 @@
+{% extends "base.html" %}
+{% block title %}
+Home
+{% endblock title %}
+{% load static %}
+
+{% block homeActive %}active{% endblock homeActive %}
+
+{% block styleCss %}
+
+.known-persons{
+  text-decoration:underline;
+  text-decoration-color:black;
+}
+.known-persons:hover{
+  text-decoration:underline;
+  text-decoration-color:red;
+}
+.carousel-1-heading{
+  font-size: 80px;
+  width: 809px;
+  right: 123px;
+  position: relative;
+  color: white;
+  text-shadow: 0px 13px 15px black;
+  bottom: 12px;
+}
+.carousel-caption-text{
+  width: 1000px;
+  font-size: 30px;
+  text-align: left;
+  position: relative;
+  left: 50px;
+  top: -9px;
+}
+.carousel-button{
+  color: white;
+  text-decoration-line: none;
+  background-color: #d55f0dd1;
+  padding: 9px 23px;
+  font-size: 28px;
+  margin: 24px 8px;
+  position: relative;
+  right: 370px;
+  box-shadow: inset 0px 0px 5px 0px blanchedalmond;
+}
+.carousel-button:hover{
+  background-color: lightblue;
+  color: darkblue;
+}
+.caption{
+  position: relative;
+  bottom: 350px;
+  text-align: center; 
+  width: 50%;
+  left: 350px;
+}
+.mission-p1{
+  width: 800px;
+    color: wheat;
+    text-shadow: 2px 2px 2px black;
+    font-size: 19px;
+}
+.mission-h{
+  font-size: 60px;
+    color: white;
+    text-shadow: 2px 2px 2px black;
+}
+.caption a{
+  text-decoration: none;
+    font-size: 18px;
+    color: wheat;
+    text-shadow: 2px 2px 6px black;
+}
+.caption a:hover{
+  text-decoration: underline;
+  text-decoration-color:black;
+    
+}
+
+
+
+{% endblock styleCss %}
+
+{% block body %}
+
+<div class="container-fluid  px-0 mb-0">
+    <div id="carouselExampleCaptions" class="carousel slide carousel-fade " data-bs-ride="carousel">
+        <div class="carousel-indicators">
+          <button type="button" data-bs-target="#carouselExampleCaptions" data-bs-slide-to="0" class="active" aria-current="true" aria-label="Slide 1"></button>
+          <button type="button" data-bs-target="#carouselExampleCaptions" data-bs-slide-to="1" aria-label="Slide 2"></button>
+          <button type="button" data-bs-target="#carouselExampleCaptions" data-bs-slide-to="2" aria-label="Slide 3"></button>
+        </div>
+        <div class="carousel-inner">
+          <div class="carousel-item active">
+            <img src={% static 'img/school1.jpg'%} class="d-block w-100" alt="..." style="height: 585px;">
+            <div class="carousel-caption d-none d-md-block">
+              <div class="container">
+                <h5 class="carousel-1-heading">ARSD College</h5>
+                <p class="carousel-caption-text">
+                  We are a public College that accepts a student interested in the field of science, math and technology.
+                </p> 
+                <a href="" class="carousel-button"><strong>Learn More</strong> </a> 
+              </div>
+            </div>
+          </div>
+          <div class="carousel-item">
+            <img src={% static "img/football.jpg" %}  class="d-block w-100" alt="..." style="height: 585px; width:1600px">
+            <div class="carousel-caption d-none d-md-block">
+              <div class="container">
+                <h5 class="carousel-1-heading" style="position: relative;right: 170px;">Every Day</h5>
+                <p class="carousel-caption-text">
+                  We open the doors of opportunity in these fields, guiding our students as they imagine the possibilities for our shared future.
+                </p> 
+                <a href="" class="carousel-button"><strong>Learn More</strong> </a> 
+              </div>
+            </div>
+          </div>
+          <div class="carousel-item">
+            <img src={% static "img/achievements.jpg" %}  class="d-block w-100" alt="..." style="height: 585px; width:1600px">
+            <div class="carousel-caption d-none d-md-block">
+              <div class="container">
+                <h5 class="carousel-1-heading"style="position: relative;right: 170px;">We Believe</h5>
+                <p class="carousel-caption-text">
+                  Our city will grow stronger when every New Orleanian can contribute to our wellbeing and innovation through the tools of math and science.
+                </p> 
+                <a href="" class="carousel-button"><strong>Learn More</strong> </a> 
+              </div>
+            </div>
+          </div>
+        </div> 
+        <button class="carousel-control-prev" type="button" data-bs-target="#carouselExampleCaptions" data-bs-slide="prev">
+          <span class="carousel-control-prev-icon" aria-hidden="true"></span>
+          <span class="visually-hidden">Previous</span>
+        </button>
+        <button class="carousel-control-next" type="button" data-bs-target="#carouselExampleCaptions" data-bs-slide="next">
+          <span class="carousel-control-next-icon" aria-hidden="true"></span>
+          <span class="visually-hidden">Next</span>
+        </button>
+      </div>
+
+    
+</div>
+<!-- <div class="container " style="margin-bottom: 200px;">
+  <h1 class="text-center my-5">What People say about our college</h1>
+  <div class="row  align-items-center row-cols-1 row-cols-md-3 g-4" style="">
+    <div class="col ">
+      <div class="card h-100">
+        <img src="https://source.unsplash.com/1600x600/?football,sports" class="card-img-top" alt="...">
+        <div class="card-body">
+          <h5 class="card-title">Card title</h5>
+          <p class="card-text">This is a wider card with supporting text below as a natural lead-in to additional content. This content is a little bit longer.</p>
+        </div>
+        <div class="card-footer">
+          <small class="text-body-secondary">Last updated 3 mins ago</small>
+        </div>
+      </div>
+    </div>
+    <div class="col">
+      <div class="card h-100">
+        <img src="..." class="card-img-top" alt="...">
+        <div class="card-body">
+          <h5 class="card-title">Card title</h5>
+          <p class="card-text">This card has supporting text below as a natural lead-in to additional content.</p>
+        </div>
+        <div class="card-footer">
+          <small class="text-body-secondary">Last updated 3 mins ago</small>
+        </div>
+      </div>
+    </div>
+    <div class="col">
+      <div class="card h-100">
+        <img src="..." class="card-img-top" alt="...">
+        <div class="card-body">
+          <h5 class="card-title">Card title</h5>
+          <p class="card-text">This is a wider card with supporting text below as a natural lead-in to additional content. This card has even longer content than the first to show that equal height action.</p>
+        </div>
+        <div class="card-footer">
+          <small class="text-body-secondary">Last updated 3 mins ago</small>
+        </div>
+      </div>
+    </div>
+  </div>
+</div> -->
+<div class="mission container-fluid px-0  " style="height:400px;">
+  <div class="mission">
+    <img src={% static "img/mission.jpg" %} alt="" style="height: 400px; width: 100%; ">
+    <div class="caption">
+      <h1 class="mission-h mb-4">Mission</h1>
+      <p class="mission-p1 mb-5">The New Orleans Charter Science and Mathematics High School is an open-admission public charter school that prepares all students for college admissions and successful careers. Sci High provides a rigorous high school curriculum with an emphasis in science and mathematics in a supportive environment of learning and respect that prepares students to make informed choices about post-secondary pursuits.</p>
+      <a href="/"> <p>Advocates for Science and Mathematics Education FY23-24 Operating Budget</p></a>
+    </div>
+  </div>
+</div>
+
+<div class="album py-5 bg-body-tertiary">
+  <h1 class="text-center my-5" style="text-decoration-line: underline;">What People say about our college</h1>
+  <div class="container">
+    <div class="row row-cols-1 row-cols-sm-2 row-cols-md-3 g-3">
+      <div class="col">
+        <div class="card shadow-sm" style="border-radius: 37px; ;position: relative;left: 100px;" >
+          <img src={% static "img/city lights.jpg" %} style="height: 37vh;border-top-left-radius: 23px;border-bottom-right-radius: " alt="" >
+          <div class="card-body">
+            <h1  class="known-persons" >Rajkumar Rao</h1>
+            <p class="card-text">Lorem ipsum dolor sit amet consectetur, adipisicing elit. Ea autem adipisci inventore fugiat ullam possimus debitis nulla quam consectetur aut voluptatibus libero ratione a in ut excepturi fugit voluptas, quasi mollitia repudiandae suscipit sequi consequuntur veniam! Nam voluptate neque, magnam cumque iusto deserunt harum in quod, accusantium, voluptates a nihil. </p>
+            <div class="d-flex justify-content-between align-items-center">
+              <div class="btn-group">
+                <button type="button" class="btn btn-sm btn-outline-secondary">View</button>
+                <button type="button" class="btn btn-sm btn-outline-secondary">Edit</button>
+              </div>
+              <small class="text-body-secondary">9 mins</small>
+            </div>
+          </div>
+        </div>
+      </div>
+      <div class="col">
+        <div class="card shadow-sm" style="border-radius: 37px;position: relative;top: 600px; margin-bottom: 600px;">
+          <img src={% static "img/city lights.jpg" %} style="height: 37vh;border-top-left-radius: 23px;border-bottom-right-radius: 23px;" alt="">
+          <div class="card-body">
+            <h1  class="known-persons" >Satish Upadhyay</h1>
+            <h3>(Ex. Bjp Delhi President)</h3>
+            <p class="card-text">Lorem ipsum dolor sit, amet consectetur adipisicing elit. Vel, quis reiciendis rem eos, omnis nostrum perspiciatis iusto quod architecto dolorem inventore dolore. Possimus magni nisi et sint consectetur, harum corporis voluptas a saepe quibusdam. Officia at iure necessitatibus, quasi distinctio, deserunt odio adipisci id repudiandae repellendus autem voluptatem dolor cumque? </p>
+            <div class="d-flex justify-content-between align-items-center">
+              <div class="btn-group">
+                <button type="button" class="btn btn-sm btn-outline-secondary">View</button>
+                <button type="button" class="btn btn-sm btn-outline-secondary">Edit</button>
+              </div>
+              <small class="text-body-secondary">9 mins</small>
+            </div>
+          </div>
+        </div>
+      </div>
+      <!-- <div class="col">
+        <div class="card shadow-sm" style="border-radius: 37px;" >
+          <img src="static\city lights.jpg" style="height: 37vh;border-top-left-radius: 23px;border-bottom-right-radius: 23px;" alt="">
+          <div class="card-body">
+            <h1 class="known-persons" " >Rajkumar Rao</h1>
+            <p class="card-text">Lorem ipsum dolor sit amet consectetur adipisicing elit. Ad non nihil ipsum suscipit commodi deserunt nemo sunt neque facilis perspiciatis deleniti aliquid esse, fuga illo distinctio! Accusantium ex aliquam amet magnam, totam ea eveniet aliquid laudantium delectus facilis nemo velit ut aspernatur dolorem qui aperiam iste molestiae tenetur officia facere. </p>
+            <div class="d-flex justify-content-between align-items-center">
+              <div class="btn-group">
+                <button type="button" class="btn btn-sm btn-outline-secondary">View</button>
+                <button type="button" class="btn btn-sm btn-outline-secondary">Edit</button>
+              </div>
+              <small class="text-body-secondary">9 mins</small>
+            </div>
+          </div>
+        </div>
+      </div> -->
+
+      
+      <div class="col " style="position: relative; ">
+        <div class="card shadow-sm" style="border-radius: 37px;position: relative;right: 100px;">
+          <img src={% static "img/city lights.jpg" %} style="height: 37vh;height: 37vh;border-top-left-radius: 23px;border-bottom-right-radius: 23px;" alt="">
+          <div class="card-body">
+            <h1 class="known-persons" >Rajkumar Rao</h1>
+            <p class="card-text">Lorem ipsum dolor sit amet consectetur adipisicing elit. Alias officia quidem quasi quae ut a earum! Amet corrupti sint placeat voluptate delectus cupiditate eligendi eum quas nesciunt! Praesentium fugit ipsam quas, quibusdam similique, unde illo quod, delectus perferendis excepturi optio at porro non repellat provident! Sequi accusantium illo numquam ipsum!</p>
+            <div class="d-flex justify-content-between align-items-center">
+              <div class="btn-group">
+                <button type="button" class="btn btn-sm btn-outline-secondary">View</button>
+                <button type="button" class="btn btn-sm btn-outline-secondary">Edit</button>
+              </div>
+              <small class="text-body-secondary">9 mins</small>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+</div>
+</div>
+
+<div class="container-fluid py-5 mt-4 text-center" style="background-color: rgba(0, 0, 255, 0.687);width: 100%;color: white; ">
+<div>
+<h2 class="mb-5">Our School is ranked  "6" by the NIRF Ranking by Ministry of Education.</h2>
+<a href="" class="carousel-button " style="margin-left:700px ;margin-top: 300px;"><strong>Learn More</strong> </a>
+</div>
+</div>
+
+
+{% endblock body %}
+
