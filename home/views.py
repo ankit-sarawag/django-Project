@@ -1,5 +1,5 @@
 from django.shortcuts import render,HttpResponse,redirect
-from home.models  import Contact,RegisterStudent
+from home.models  import Contact,RegisterStudent,CourseMentorMapping
 from datetime import datetime
 from django.contrib import messages
 
@@ -9,7 +9,6 @@ from django.contrib.auth import logout,authenticate,login
 from django.contrib.sessions.models import Session
 
 
-# password for test user is ankit123456789$
 # Create your views here.
 def index(request):
     if request.user.is_anonymous:
@@ -40,7 +39,7 @@ def contact(request):
         messages.success(request,"Welcome to the amazing world of ARSD College!")
         print("data has been written")
     return render(request,'contact.html',{"name":request.POST.get('name')})
-    # return HttpResponse("THis is the contact page")
+    # return HttpResponse("This is the contact page")
 
 def services(request):
     if request.user.is_anonymous:
@@ -59,7 +58,6 @@ def research(request):
         return redirect("/login")
     return render(request,'research.html')
     # return HttpResponse("THis is the achievements page")
-
 
 def loginUser(request):
     if request.method == "POST":
@@ -146,28 +144,27 @@ def loginStudent(request):
         print(username,rollnumber,password)
         
         check_if_user_exists = RegisterStudent.objects.filter(rollno=rollnumber,username=username,password=password).exists()
-        
+    
         if check_if_user_exists:
-                request.session["student_logged_in"] = True
-                request.session["student_rollnumber"] = rollnumber
-                return redirect("StudentDetails")
+            request.session["student_logged_in"] = True
+            request.session["student_rollnumber"] = rollnumber
+            return redirect("StudentDetails")
         else:
             messages.warning(request,"You don't have an account in our database. Please register yourself and then login again")
             return render(request,"loginStudent.html",{"name":username})
     
-    # student = RegisterStudent.objects.all()
+    student = RegisterStudent.objects.all()
     return render(request,'loginStudent.html')
 
 def logoutStudent(request):
-    # rollnumber = request.session.get("student_rollnumber")
+    rollnumber = request.session.get("student_rollnumber")
 
     # Check if the student session exists
-    # if Session.objects.filter(session_key=request.session.session_key, session_data=rollnumber).exists():
-    # #     Delete the student's session
-    #     Session.objects.filter(session_key=request.session.session_key,).delete()
-        
-    # #     Clear the session data for the current request
-    #     request.session.flush()
+    if Session.objects.filter(session_key=request.session.session_key, session_data=rollnumber).exists():
+    #     Delete the student's session
+        Session.objects.filter(session_key=request.session.session_key,).delete()  
+    #     Clear the session data for the current request
+        request.session.flush()
     if request.session.get("student_logged_in"):
         # Clear the student-specific session variables
         del request.session["student_logged_in"]
@@ -181,7 +178,6 @@ def StudentDetails(request):
         return redirect("/login")
     if not request.session.get("student_logged_in"):
         return redirect("/loginStudent")
-    
     
     rollnumber = request.session.get("student_rollnumber")
 
@@ -229,12 +225,11 @@ def updateDetails(request):
             print("data has been written")
             context={"success": True}
             
-        else:
-            
+        else:   
             if(len(rollnumber) !=5):
                 messages.warning(request,"The length of roll number should be equal to 5")
             elif(len(phone) != 10):
                 messages.warning(request,"The length of phone number should be equal to 10")  
     # Use the rollnumber to filter the database
-    # studentDetails = RegisterStudent.objects.get(rollno=rollnumber)
+    studentDetails = RegisterStudent.objects.get(rollno=rollnumber)
     return render(request,'updateDetails.html',context)
